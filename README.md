@@ -307,6 +307,6 @@ Maharaja Surajmal Institute of Technology (MSIT)
 
 ### ⭐ If you found this project useful, consider giving it a Star!
 
-Made with ❤️ using Java & Spring Boot
+Made using Java & Spring Boot
 
 </div>
