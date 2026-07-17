@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 230 60" width="120" height="40">
+  <!-- Cognizant brand color: #1277BC (blue), with c-dot symbol -->
+  <!-- Simplified "C" arc with dot -->
+  <path d="M 40,10 A 20,20 0 1,0 40,50" fill="none" stroke="#1277BC" stroke-width="8" stroke-linecap="round"/>
+  <circle cx="40" cy="30" r="5" fill="#1277BC"/>
+  <text x="52" y="43" font-family="Arial, sans-serif" font-size="26" font-weight="700" fill="#1277BC">Cognizant</text>
+</svg>

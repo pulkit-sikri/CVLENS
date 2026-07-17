@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 60" width="120" height="40">
+  <!-- Accenture: purple "greater-than" chevron + wordmark -->
+  <!-- Brand color: #A100FF -->
+  <polygon points="0,0 28,30 0,60 16,60 44,30 16,0" fill="#A100FF"/>
+  <text x="54" y="43" font-family="Arial, sans-serif" font-size="28" font-weight="700" fill="#A100FF">Accenture</text>
+</svg>

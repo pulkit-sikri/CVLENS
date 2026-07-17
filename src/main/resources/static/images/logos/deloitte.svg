@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 60" width="120" height="40">
+  <!-- Deloitte: black wordmark + green dot above the i -->
+  <!-- Brand: #86BC25 (green), #000000 -->
+  <text x="0" y="48" font-family="Arial, sans-serif" font-size="40" font-weight="700" fill="#000000">Deloitte</text>
+  <!-- Green dot: position above the dot of letter "i" in "Deloitte" (approx x=148, y=10) -->
+  <circle cx="152" cy="8" r="7" fill="#86BC25"/>
+</svg>

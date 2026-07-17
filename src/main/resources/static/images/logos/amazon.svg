@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 60" width="120" height="40">
+  <text x="10" y="46" font-family="Amazon Ember, Arial Black, sans-serif" font-size="46" font-weight="700" fill="#232F3E">amazon</text>
+  <!-- Arrow swoosh -->
+  <path d="M 10 54 Q 60 70 110 54" stroke="#FF9900" stroke-width="4" fill="none" stroke-linecap="round"/>
+</svg>

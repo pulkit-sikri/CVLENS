@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CVLens</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg custom-navbar sticky-top">
+    <div class="container">
+        <a class="navbar-brand fs-3" th:href="@{/}"><i class="bi bi-file-earmark-bar-graph"></i> CVLens</a>
+        <div class="ms-auto d-flex align-items-center">
+            <button id="theme-toggle" class="theme-toggle-btn me-3" title="Toggle Theme">
+                <i id="theme-icon" class="bi bi-moon-fill"></i>
+            </button>
+            <a th:href="@{/login}" class="btn btn-primary btn-sm px-3 rounded-pill me-2">Candidate Login</a>
+            <a th:href="@{/admin/login}" class="btn btn-outline-primary btn-sm px-3 rounded-pill">Admin Portal</a>
+        </div>
+    </div>
+</nav>
+
+<!-- Hero Section -->
+<header class="py-5 text-center my-4 animate-fade-in">
+    <div class="container py-5">
+        <h1 class="display-4 fw-bold mb-3">Optimize Your Resume. Land Your Dream Role.</h1>
+        <p class="lead text-custom-muted mb-5 mx-auto" style="max-width: 700px;">
+            CVLens evaluates your resume text against specific job descriptions, giving you an instant compatibility score, matched/missing keyword tag analysis, and actionable suggestions.
+        </p>
+        <div class="d-flex justify-content-center gap-3">
+            <a th:href="@{/login}" class="btn btn-primary btn-lg px-4 rounded-3">
+                <i class="bi bi-person-fill me-2"></i>Candidate Portal
+            </a>
+            <a th:href="@{/admin/login}" class="btn btn-outline-primary btn-lg px-4 rounded-3">
+                <i class="bi bi-shield-lock-fill me-2"></i>Admin Console
+            </a>
+        </div>
+    </div>
+</header>
+
+<!-- How It Works Section -->
+<section class="py-5 bg-opacity-10 border-top border-bottom" style="background-color: var(--card-bg);">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="fw-bold">How It Works</h2>
+            <p class="text-custom-muted">Analyze your compatibility in three simple steps</p>
+        </div>
+        <div class="row g-4">
+            <div class="col-md-4 text-center">
+                <div class="rounded-circle p-4 bg-primary bg-opacity-10 text-primary mx-auto mb-3 fs-3" style="width: 80px; height: 80px; display: flex; align-items: center; justify-content: center;">
+                    <i class="bi bi-clipboard-check"></i>
+                </div>
+                <h5 class="fw-bold">1. Select Target Role</h5>
+                <p class="text-custom-muted px-3">Choose the recruiter and the specific job description you want to optimize for.</p>
+            </div>
+            <div class="col-md-4 text-center">
+                <div class="rounded-circle p-4 bg-primary bg-opacity-10 text-primary mx-auto mb-3 fs-3" style="width: 80px; height: 80px; display: flex; align-items: center; justify-content: center;">
+                    <i class="bi bi-file-earmark-arrow-up"></i>
+                </div>
+                <h5 class="fw-bold">2. Paste Resume Text</h5>
+                <p class="text-custom-muted px-3">Copy and paste your plain text resume content directly into the secure evaluator.</p>
+            </div>
+            <div class="col-md-4 text-center">
+                <div class="rounded-circle p-4 bg-primary bg-opacity-10 text-primary mx-auto mb-3 fs-3" style="width: 80px; height: 80px; display: flex; align-items: center; justify-content: center;">
+                    <i class="bi bi-activity"></i>
+                </div>
+                <h5 class="fw-bold">3. Get Match Results</h5>
+                <p class="text-custom-muted px-3">Get a precise compatibility score, list of matched/missing tags, and suggestions.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Features Section -->
+<section class="py-5">
+    <div class="container my-4">
+        <div class="text-center mb-5">
+            <h2 class="fw-bold">Key Platform Features</h2>
+            <p class="text-custom-muted">Optimized for simplicity, performance, and accessibility</p>
+        </div>
+        <div class="row g-4">
+            <div class="col-md-6">
+                <div class="custom-card p-4 h-100">
+                    <div class="d-flex align-items-center mb-3">
+                        <i class="bi bi-lightning-fill text-warning fs-3 me-3"></i>
+                        <h5 class="fw-bold mb-0">Instant Evaluation</h5>
+                    </div>
+                    <p class="text-custom-muted mb-0">Uses custom high-performance data structures to tokenise and check keywords in under 15 milliseconds.</p>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="custom-card p-4 h-100">
+                    <div class="d-flex align-items-center mb-3">
+                        <i class="bi bi-bookmark-star-fill text-primary fs-3 me-3"></i>
+                        <h5 class="fw-bold mb-0">Actionable Suggestions</h5>
+                    </div>
+                    <p class="text-custom-muted mb-0">Provides a detailed roadmap of missing skillsets to guide your career training and upskilling path.</p>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="custom-card p-4 h-100">
+                    <div class="d-flex align-items-center mb-3">
+                        <i class="bi bi-cloud-check-fill text-success fs-3 me-3"></i>
+                        <h5 class="fw-bold mb-0">Analysis History Tracking</h5>
+                    </div>
+                    <p class="text-custom-muted mb-0">Saves your upload records to the database so you can track improvements and score progress over time.</p>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="custom-card p-4 h-100">
+                    <div class="d-flex align-items-center mb-3">
+                        <i class="bi bi-download text-danger fs-3 me-3"></i>
+                        <h5 class="fw-bold mb-0">Exportable Plain Text Reports</h5>
+                    </div>
+                    <p class="text-custom-muted mb-0">Easily print or download a formatted analysis report summary file to review offline.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Companies Section -->
+<section class="py-5 border-top" style="background-color: var(--card-bg);">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="fw-bold">Companies Where Our Users Have Succeeded</h2>
+            <p class="text-custom-muted">Our users have landed roles at some of the most respected organizations worldwide</p>
+        </div>
+        <div class="row row-cols-3 row-cols-md-5 g-4 text-center align-items-center justify-content-center">
+            <div class="col">
+                <div class="p-3 border rounded-3 bg-body d-flex flex-column align-items-center justify-content-center" style="min-height: 100px;">
+                    <img th:src="@{/images/logos/google.svg}" alt="Google" class="company-logo">
+                    <strong>Google</strong>
+                </div>
+            </div>
+            <div class="col">
+                <div class="p-3 border rounded-3 bg-body d-flex flex-column align-items-center justify-content-center" style="min-height: 100px;">
+                    <img th:src="@{/images/logos/microsoft.svg}" alt="Microsoft" class="company-logo">
+                    <strong>Microsoft</strong>
+                </div>
+            </div>
+            <div class="col">
+                <div class="p-3 border rounded-3 bg-body d-flex flex-column align-items-center justify-content-center" style="min-height: 100px;">
+                    <img th:src="@{/images/logos/amazon.svg}" alt="Amazon" class="company-logo">
+                    <strong>Amazon</strong>
+                </div>
+            </div>
+            <div class="col">
+                <div class="p-3 border rounded-3 bg-body d-flex flex-column align-items-center justify-content-center" style="min-height: 100px;">
+                    <img th:src="@{/images/logos/tcs.svg}" alt="TCS" class="company-logo">
+                    <strong>TCS</strong>
+                </div>
+            </div>
+            <div class="col">
+                <div class="p-3 border rounded-3 bg-body d-flex flex-column align-items-center justify-content-center" style="min-height: 100px;">
+                    <img th:src="@{/images/logos/infosys.svg}" alt="Infosys" class="company-logo">
+                    <strong>Infosys</strong>
+                </div>
+            </div>
+            <div class="col">
+                <div class="p-3 border rounded-3 bg-body d-flex flex-column align-items-center justify-content-center" style="min-height: 100px;">
+                    <img th:src="@{/images/logos/wipro.svg}" alt="Wipro" class="company-logo">
+                    <strong>Wipro</strong>
+                </div>
+            </div>
+            <div class="col">
+                <div class="p-3 border rounded-3 bg-body d-flex flex-column align-items-center justify-content-center" style="min-height: 100px;">
+                    <img th:src="@{/images/logos/accenture.svg}" alt="Accenture" class="company-logo">
+                    <strong>Accenture</strong>
+                </div>
+            </div>
+            <div class="col">
+                <div class="p-3 border rounded-3 bg-body d-flex flex-column align-items-center justify-content-center" style="min-height: 100px;">
+                    <img th:src="@{/images/logos/deloitte.svg}" alt="Deloitte" class="company-logo">
+                    <strong>Deloitte</strong>
+                </div>
+            </div>
+            <div class="col">
+                <div class="p-3 border rounded-3 bg-body d-flex flex-column align-items-center justify-content-center" style="min-height: 100px;">
+                    <img th:src="@{/images/logos/capgemini.svg}" alt="Capgemini" class="company-logo">
+                    <strong>Capgemini</strong>
+                </div>
+            </div>
+            <div class="col">
+                <div class="p-3 border rounded-3 bg-body d-flex flex-column align-items-center justify-content-center" style="min-height: 100px;">
+                    <img th:src="@{/images/logos/cognizant.svg}" alt="Cognizant" class="company-logo">
+                    <strong>Cognizant</strong>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="py-4 mt-5 border-top text-center text-custom-muted">
+    <div class="container">
+        <p class="mb-1">&copy; 2026 CVLens &mdash; Summer Training Project.</p>
+        <small>Empowering students with simple and effective resume analysis.</small>
+    </div>
+</footer>
+
+<!-- Theme toggle JS -->
+<script th:src="@{/js/theme.js}"></script>
+<!-- Bootstrap Bundle JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

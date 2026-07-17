@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analysis Report - CVLens</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg custom-navbar sticky-top no-print">
+    <div class="container">
+        <a class="navbar-brand fs-3" href="#"><i class="bi bi-file-earmark-bar-graph"></i> CVLens</a>
+        <div class="ms-auto d-flex align-items-center">
+            <button id="theme-toggle" class="theme-toggle-btn me-3" title="Toggle Theme">
+                <i id="theme-icon" class="bi bi-moon-fill"></i>
+            </button>
+            <a th:href="@{/user/dashboard}" class="btn btn-outline-primary btn-sm px-3 rounded-pill">
+                <i class="bi bi-arrow-left"></i> Dashboard
+            </a>
+        </div>
+    </div>
+</nav>
+
+<div class="container my-5 animate-fade-in">
+    <!-- Action Header -->
+    <div class="d-flex justify-content-between align-items-center mb-4 no-print">
+        <div>
+            <h2 class="fw-bold mb-0">Analysis Report</h2>
+            <p class="text-custom-muted mb-0">Result ID: #<span th:text="${report.id}">00</span> | Date: <span th:text="${#temporals.format(report.analyzedAt, 'dd MMM yyyy, hh:mm a')}">Date</span></p>
+        </div>
+        <div class="d-flex gap-2">
+            <a th:href="@{'/user/report/' + ${report.id} + '/download'}" class="btn btn-outline-success">
+                <i class="bi bi-download me-1"></i> Download Report
+            </a>
+            <button onclick="window.print()" class="btn btn-primary">
+                <i class="bi bi-printer me-1"></i> Print / Save PDF
+            </button>
+        </div>
+    </div>
+
+    <!-- Printable Header (Only shown during print) -->
+    <div class="d-none d-print-block text-center border-bottom pb-4 mb-5">
+        <h1 class="fw-bold text-primary">CVLens Analysis Report</h1>
+        <p class="text-muted mb-0">Candidate Username: <span th:text="${report.resume.user.username}">user</span> | Date: <span th:text="${#temporals.format(report.analyzedAt, 'dd MMM yyyy, hh:mm a')}">Date</span></p>
+    </div>
+
+    <div class="row g-4">
+        <!-- Score Circular Panel -->
+        <div class="col-lg-4">
+            <div class="glass-card p-5 text-center h-100 d-flex flex-column justify-content-center">
+                <h5 class="fw-bold text-custom-muted text-uppercase mb-4">Match Strength</h5>
+                
+                <!-- Large circular score badge -->
+                <div class="score-badge mb-4" 
+                     th:classappend="${report.score >= 90 ? 'score-excellent' : (report.score >= 75 ? 'score-good' : (report.score >= 50 ? 'score-average' : 'score-needs-improvement'))}">
+                    <span th:text="${report.score + '%'}">0%</span>
+                </div>
+                
+                <h3 class="fw-bold mb-1" th:text="${report.status}">Excellent</h3>
+                <p class="text-custom-muted mb-0">Resume Score Status</p>
+            </div>
+        </div>
+
+        <!-- Target details and match tables -->
+        <div class="col-lg-8">
+            <div class="custom-card p-4 h-100">
+                <h4 class="fw-bold mb-4 border-bottom pb-2">Evaluation Details</h4>
+                
+                <div class="row g-3 mb-4">
+                    <div class="col-sm-6">
+                        <span class="text-custom-muted small uppercase d-block fw-semibold text-uppercase">Target Company</span>
+                        <strong class="fs-5" th:text="${report.company.name}">Google</strong>
+                    </div>
+                    <div class="col-sm-6">
+                        <span class="text-custom-muted small uppercase d-block fw-semibold text-uppercase">Job Role</span>
+                        <strong class="fs-5" th:text="${report.jobDescription.jobRole}">Software Engineer</strong>
+                    </div>
+                </div>
+
+                <!-- Matched Skills -->
+                <div class="mb-4">
+                    <h6 class="fw-bold text-success mb-2">
+                        <i class="bi bi-check-circle-fill"></i> Matched Skills
+                    </h6>
+                    <div th:if="${not #strings.isEmpty(report.matchedSkills)}">
+                        <span th:each="skill : ${#strings.arraySplit(report.matchedSkills, ', ')}" class="skill-tag skill-tag-matched">
+                            <i class="bi bi-check"></i> <span th:text="${skill}">Java</span>
+                        </span>
+                    </div>
+                    <div th:if="${#strings.isEmpty(report.matchedSkills)}" class="text-custom-muted small p-2 bg-light rounded">
+                        No required skills matched from your resume.
+                    </div>
+                </div>
+
+                <!-- Missing Skills -->
+                <div class="mb-4">
+                    <h6 class="fw-bold text-danger mb-2">
+                        <i class="bi bi-x-circle-fill"></i> Missing Skills
+                    </h6>
+                    <div th:if="${not #strings.isEmpty(report.missingSkills)}">
+                        <span th:each="skill : ${#strings.arraySplit(report.missingSkills, ', ')}" class="skill-tag skill-tag-missing">
+                            <i class="bi bi-x"></i> <span th:text="${skill}">Spring Boot</span>
+                        </span>
+                    </div>
+                    <div th:if="${#strings.isEmpty(report.missingSkills)}" class="text-custom-muted small p-2 bg-light rounded text-success fw-semibold">
+                        <i class="bi bi-check-all"></i> Congratulations! No missing skills.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Suggestions and Resume Text Details -->
+        <div class="col-12">
+            <div class="custom-card p-4">
+                <h4 class="fw-bold mb-3 border-bottom pb-2"><i class="bi bi-lightbulb-fill text-warning"></i> Suggestions & Feedback</h4>
+                <div class="p-3 bg-light-subtle rounded border text-custom-muted" style="white-space: pre-line;" th:text="${report.suggestions}">
+                    Suggestions will appear here.
+                </div>
+            </div>
+        </div>
+
+        <!-- Raw Paste Review (Only shown in detail view, collapsed by default) -->
+        <div class="col-12 no-print">
+            <div class="custom-card p-4">
+                <button class="btn btn-outline-secondary w-100 d-flex justify-content-between align-items-center" type="button" data-bs-toggle="collapse" data-bs-target="#collapseResumeText">
+                    <span class="fw-bold"><i class="bi bi-file-text me-2"></i> Review Submitted Resume Text</span>
+                    <i class="bi bi-chevron-down"></i>
+                </button>
+                <div class="collapse mt-3" id="collapseResumeText">
+                    <div class="card card-body bg-light-subtle font-monospace text-wrap text-custom-muted" style="white-space: pre-wrap; font-size: 0.9rem;" th:text="${report.resume.content}">
+                        Raw Resume Text
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Theme toggle script -->
+<script th:src="@{/js/theme.js}"></script>
+<!-- Bootstrap Bundle JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

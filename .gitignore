@@ -1,0 +1,111 @@
+# =============================================================
+#  .gitignore  —  Spring Boot / Maven / SRA Project
+# =============================================================
+
+# ---------------------------------------------------------------
+# 🔐 SENSITIVE / SECRET FILES — Never commit these
+# ---------------------------------------------------------------
+
+# Real application config with DB credentials & secrets
+src/main/resources/application.properties
+src/main/resources/application-*.properties
+
+# Environment variable files (if ever used)
+.env
+.env.*
+!.env.example
+
+# ---------------------------------------------------------------
+# 🏗️ Maven Build Output
+# ---------------------------------------------------------------
+target/
+!**/src/main/**/target/
+!**/src/test/**/target/
+
+# Maven wrapper jar (downloaded locally, not needed in VCS)
+.mvn/wrapper/maven-wrapper.jar
+
+# ---------------------------------------------------------------
+# 📦 Compiled / Packaged Artifacts
+# ---------------------------------------------------------------
+*.class
+*.jar
+*.war
+*.ear
+*.nar
+*.zip
+*.tar.gz
+*.rar
+
+# ---------------------------------------------------------------
+# 🪵 Logs
+# ---------------------------------------------------------------
+*.log
+logs/
+spring.log
+
+# ---------------------------------------------------------------
+# 🖥️ IDE — IntelliJ IDEA
+# ---------------------------------------------------------------
+.idea/
+*.iws
+*.iml
+*.ipr
+out/
+
+# ---------------------------------------------------------------
+# 🖥️ IDE — Eclipse / STS (Spring Tool Suite)
+# ---------------------------------------------------------------
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings/
+.springBeans
+.sts4-cache/
+
+# ---------------------------------------------------------------
+# 🖥️ IDE — NetBeans
+# ---------------------------------------------------------------
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+build/
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+# ---------------------------------------------------------------
+# 🖥️ IDE — VS Code
+# ---------------------------------------------------------------
+.vscode/
+
+# ---------------------------------------------------------------
+# 🖥️ OS Generated Files
+# ---------------------------------------------------------------
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+desktop.ini
+
+# ---------------------------------------------------------------
+# 🗄️ Database Dump / Local Data Files
+# ---------------------------------------------------------------
+*.sql
+*.db
+*.sqlite
+*.h2.mv.db
+*.h2.trace.db
+
+# ---------------------------------------------------------------
+# 📄 Uploaded Resume Files (user-generated content)
+# ---------------------------------------------------------------
+uploads/
+*.pdf
+*.doc
+*.docx

@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 85" width="120" height="40">
+  <!-- Microsoft logo: four colored squares + wordmark -->
+  <rect x="0" y="0" width="38" height="38" fill="#F25022"/>
+  <rect x="40" y="0" width="38" height="38" fill="#7FBA00"/>
+  <rect x="0" y="40" width="38" height="38" fill="#00A4EF"/>
+  <rect x="40" y="40" width="38" height="38" fill="#FFB900"/>
+  <text x="88" y="55" font-family="Segoe UI, Arial, sans-serif" font-size="30" font-weight="600" fill="#737373">microsoft</text>
+</svg>

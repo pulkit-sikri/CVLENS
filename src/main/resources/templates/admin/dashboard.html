@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - CVLens</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg custom-navbar sticky-top">
+    <div class="container">
+        <a class="navbar-brand fs-3" href="#"><i class="bi bi-file-earmark-bar-graph text-danger"></i> CVLens Admin</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto align-items-center">
+                <li class="nav-item">
+                    <span class="nav-link text-custom-muted me-3"><i class="bi bi-shield-fill"></i> Admin Panel: <span th:text="${admin.username}">Admin</span></span>
+                </li>
+                <li class="nav-item me-2">
+                    <button id="theme-toggle" class="theme-toggle-btn" title="Toggle Theme">
+                        <i id="theme-icon" class="bi bi-moon-fill"></i>
+                    </button>
+                </li>
+                <li class="nav-item">
+                    <form th:action="@{/logout}" method="POST" class="d-inline">
+                        <button type="submit" class="btn btn-outline-danger btn-sm px-3 rounded-pill">
+                            <i class="bi bi-box-arrow-right"></i> Logout
+                        </button>
+                    </form>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container my-5 animate-fade-in">
+    <!-- Unauthorized access alert -->
+    <div th:if="${param.error}" class="alert alert-danger border-0 rounded-3 mb-4" role="alert">
+        <i class="bi bi-shield-slash-fill me-2"></i> Access Denied: You do not have permission to view that resource.
+    </div>
+
+    <!-- Welcome Header -->
+    <div class="mb-4">
+        <h2 class="fw-bold text-danger">Admin Console</h2>
+        <p class="text-custom-muted">Configure target recruiters, manage job role skillsets, and monitor candidate evaluations.</p>
+    </div>
+
+    <!-- Dashboard Statistics Grid -->
+    <div class="row g-4 mb-5">
+        <div class="col-md-3">
+            <div class="custom-card p-4 d-flex align-items-center">
+                <div class="rounded-3 p-3 bg-danger bg-opacity-10 text-danger me-3 fs-3">
+                    <i class="bi bi-people-fill"></i>
+                </div>
+                <div>
+                    <h6 class="text-custom-muted mb-1 text-uppercase fw-semibold small">Registered Users</h6>
+                    <h3 class="fw-bold mb-0" th:text="${totalUsers}">0</h3>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="custom-card p-4 d-flex align-items-center">
+                <div class="rounded-3 p-3 bg-primary bg-opacity-10 text-primary me-3 fs-3">
+                    <i class="bi bi-building"></i>
+                </div>
+                <div>
+                    <h6 class="text-custom-muted mb-1 text-uppercase fw-semibold small">Total Companies</h6>
+                    <h3 class="fw-bold mb-0" th:text="${totalCompanies}">0</h3>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="custom-card p-4 d-flex align-items-center">
+                <div class="rounded-3 p-3 bg-info bg-opacity-10 text-info me-3 fs-3">
+                    <i class="bi bi-briefcase-fill"></i>
+                </div>
+                <div>
+                    <h6 class="text-custom-muted mb-1 text-uppercase fw-semibold small">Job Roles</h6>
+                    <h3 class="fw-bold mb-0" th:text="${totalJobRoles}">0</h3>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="custom-card p-4 d-flex align-items-center">
+                <div class="rounded-3 p-3 bg-success bg-opacity-10 text-success me-3 fs-3">
+                    <i class="bi bi-file-earmark-check-fill"></i>
+                </div>
+                <div>
+                    <h6 class="text-custom-muted mb-1 text-uppercase fw-semibold small">Total Analyses</h6>
+                    <h3 class="fw-bold mb-0" th:text="${totalAnalyses}">0</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Actions and Recent Activity -->
+    <div class="row g-4">
+        <!-- Sidebar Navigation Shortcuts -->
+        <div class="col-lg-4">
+            <div class="glass-card p-4 h-100">
+                <h4 class="fw-bold mb-3"><i class="bi bi-menu-button-wide text-danger"></i> Operations</h4>
+                <div class="d-grid gap-3 mt-4">
+                    <a th:href="@{/admin/companies}" class="btn btn-outline-primary text-start p-3 rounded-3 d-flex align-items-center justify-content-between">
+                        <span><i class="bi bi-building-add me-2"></i> Manage Companies & Roles</span>
+                        <i class="bi bi-chevron-right"></i>
+                    </a>
+                    <a th:href="@{/admin/users}" class="btn btn-outline-primary text-start p-3 rounded-3 d-flex align-items-center justify-content-between">
+                        <span><i class="bi bi-people me-2"></i> View User Registry</span>
+                        <i class="bi bi-chevron-right"></i>
+                    </a>
+                    <a th:href="@{/admin/resumes}" class="btn btn-outline-primary text-start p-3 rounded-3 d-flex align-items-center justify-content-between">
+                        <span><i class="bi bi-file-earmark-medical me-2"></i> View Uploaded Resumes</span>
+                        <i class="bi bi-chevron-right"></i>
+                    </a>
+                </div>
+                
+                <div class="mt-4 pt-3 border-top">
+                    <div class="d-flex justify-content-between mb-2">
+                        <span class="text-custom-muted">Average Score:</span>
+                        <strong th:text="${avgScore + '%'}">0%</strong>
+                    </div>
+                    <div class="d-flex justify-content-between">
+                        <span class="text-custom-muted">Most Applied:</span>
+                        <strong th:text="${mostAppliedCompany}">Google</strong>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Recent Submissions List -->
+        <div class="col-lg-8">
+            <div class="custom-card p-4 h-100">
+                <h4 class="fw-bold mb-3"><i class="bi bi-activity text-primary"></i> Recent Platform Activity</h4>
+                
+                <div th:if="${recentAnalyses.empty}" class="text-center py-5">
+                    <i class="bi bi-cloud-slash fs-1 text-custom-muted"></i>
+                    <p class="mt-2 text-custom-muted">No resume analysis has been run on this platform yet.</p>
+                </div>
+
+                <div th:if="${!recentAnalyses.empty}" class="table-responsive mt-3">
+                    <table class="table custom-table align-middle">
+                        <thead>
+                            <tr>
+                                <th>Candidate</th>
+                                <th>Recruiter</th>
+                                <th>Job Role</th>
+                                <th>Score</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="report : ${recentAnalyses}">
+                                <td>
+                                    <strong th:text="${report.resume.user.username}">User</strong>
+                                </td>
+                                <td th:text="${report.company.name}">Google</td>
+                                <td th:text="${report.jobDescription.jobRole}">Role</td>
+                                <td>
+                                    <span class="badge py-2 px-3 rounded-pill text-white" 
+                                          th:classappend="${report.score >= 90 ? 'score-excellent' : (report.score >= 75 ? 'score-good' : (report.score >= 50 ? 'score-average' : 'score-needs-improvement'))}"
+                                          th:text="${report.score + '%'}">
+                                        0%
+                                    </span>
+                                </td>
+                                <td>
+                                    <a th:href="@{'/user/report/' + ${report.id}}" class="btn btn-outline-secondary btn-sm rounded-pill px-3">
+                                        <i class="bi bi-eye"></i> Details
+                                    </a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Theme toggle JS -->
+<script th:src="@{/js/theme.js}"></script>
+<!-- Bootstrap Bundle JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
