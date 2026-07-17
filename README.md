@@ -164,18 +164,20 @@ Match Score = (Matched Skills / Total Required Skills) × 100
  
 
 # 📸 Screenshots
+
+---
+
+## Home Page
+ 
+![Dashboard](screenshots/Dashboard1.png)
+![Dashboard](screenshots/Dashboard2.png)
+ 
+---
  
 ## Login
  
 ![Login](screenshots/Login1.png)
 ![Login](screenshots/Login2.png)
- 
----
- 
-## User Dashboard
- 
-![Dashboard](screenshots/Dashboard1.png)
-![Dashboard](screenshots/Dashboard2.png)
  
 ---
  
